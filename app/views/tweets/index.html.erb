@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="container">
+  <h1>Tweets</h1>
+  <div class="row well">
+    <div class="col-md-2">
+      <h4><strong>User:</strong></h4>
+    </div>
+    <div class="col-md-6">
+      <h4><strong>Message:</strong></h4>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+<% @tweets.each do |tweet| %>
+  <div class="row well">
+    <div class="col-md-2">
+      <%= link_to tweet.user.username, show_user_path(id: tweet.user.id) %>
+    </div>
+    <div class="col-md-7">
+      <%= tweet.message.html_safe %>
+    </div>
+    <div class="col-md-1">
+      <%= link_to 'Show', tweet, class: "btn btn-primary" %>
+    </div>
+    <div class="col-md-1">
+      <%= link_to 'Edit', edit_tweet_path(tweet), class: "btn btn-success" %>
+    </div>
+    <div class="col-md-1">
+      <%= link_to 'Destroy', tweet, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+  </div>
+<% end %>
+</div>
+
+<br>
+
+<%= link_to 'New Tweet', new_tweet_path, class: 'btn btn-primary' %>
